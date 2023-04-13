@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0
 EXPOSE 5185
 
 # Copy the published app into the container
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
 WORKDIR /src
 COPY . .
 RUN dotnet restore
