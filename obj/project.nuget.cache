@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "6IpSVBrVBZTfaKTtmHQ87t36hDsh2UQoduQc9EnbmlcKJq4qt5U23ikrVSHvKcRBdgECfN+Ck/FzEz/BM0pVyw==",
+  "success": true,
+  "projectFilePath": "/Users/jainsi/Projects/dotnetapp/MyWebApp.csproj",
+  "expectedPackageFiles": [
+    "/Users/jainsi/.nuget/packages/microsoft.netcore.app.ref/6.0.16/microsoft.netcore.app.ref.6.0.16.nupkg.sha512",
+    "/Users/jainsi/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.16/microsoft.aspnetcore.app.ref.6.0.16.nupkg.sha512",
+    "/Users/jainsi/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.16/microsoft.netcore.app.host.osx-arm64.6.0.16.nupkg.sha512"
+  ],
+  "logs": []
+}
