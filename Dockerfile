@@ -1,6 +1,5 @@
 
-
-FROM mcr.microsoft.com/dotnet/runtime:6.0
+FROM mcr.microsoft.com/dotnet/sdk:6.0
 WORKDIR /App
 EXPOSE 5185
 COPY . ./
