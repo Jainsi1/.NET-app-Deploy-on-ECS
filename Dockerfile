@@ -7,5 +7,6 @@ EXPOSE 5185
 # Build the final image for the container
 FROM mcr.microsoft.com/dotnet/runtime:6.0
 WORKDIR /app
-COPY --from=build /app .
+COPY . .
+RUN dotnet build
 ENTRYPOINT ["dotnet", "MyWebApp.dll"]
