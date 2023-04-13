@@ -1,9 +1,9 @@
 # Start with the official .NET Core runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/runtime:6.0
 EXPOSE 5185
 
 # Copy the published app into the container
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+FROM mcr.microsoft.com/dotnet/runtime:6.0 AS build
 WORKDIR /src
 COPY . .
 RUN dotnet restore
