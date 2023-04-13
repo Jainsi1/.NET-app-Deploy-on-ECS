@@ -6,7 +6,6 @@ EXPOSE 5185
 FROM mcr.microsoft.com/dotnet/runtime:6.0 AS build
 WORKDIR /src
 COPY . .
-RUN dotnet restore
 RUN dotnet publish -c Release -o /app
 
 # Build the final image for the container
