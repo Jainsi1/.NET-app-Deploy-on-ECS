@@ -1,0 +1,60 @@
+on: 
+  workflow_dispatch:
+    inputs:
+      ecrreponame:
+        description: "name of your ecr repository"
+        type: string
+        required: true
+      imgtagname:
+        description: "tag name of image"
+        type: string
+        required: true
+      taskdefname:
+        description: "name of the task defination"
+        type: string
+        required: true
+      clustername:
+        description: "name of the cluster"
+        type: string 
+        required: true
+      svcname:
+        description: "name of the service"
+        type: string  
+        required: true
+  
+jobs:
+  deploy:
+    name: Deploy to ECS
+    runs-on: ubuntu-latest
+    steps:
+      - name: to checkout
+        uses: actions/checkout@v2
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1   
+        
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ inputs.ecrreponame }
+          IMAGE_TAG: ${{ inputs.imgtagname }
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" 
+          
+      - name: Render Amazon ECS task defi
+        uses: virtuecloud/Composite-actions/Deploy/ECS@main
+        with:
+         CLUSTER_NAME: ${{ inputs.clustername }}
+         SERVICE_NAME: ${{ inputs.svcname }}
+         TASKDEF_NAME: ${{ inputs.taskdefname }} 
