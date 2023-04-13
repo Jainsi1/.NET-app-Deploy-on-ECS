@@ -1,5 +1,5 @@
 # Start with the official .NET Core runtime image
-FROM mcr.microsoft.com/dotnet/sdk:6.0 
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine
 EXPOSE 5185
 
 # Copy the published app into the container
